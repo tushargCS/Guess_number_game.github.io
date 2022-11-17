@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="Script.js"></script> -->
+    <script src="https://kit.fontawesome.com/1054dc667a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+          <nav>
+                <h1 class="logo" ><i class="fas fa-gamepad"></i> Guess The Number</h1>
+                <h1>&lt;&lt; Guess number between 1 to 20 in &#128287; Check &gt;&gt; </h1>
+          </nav>
+       </div>
+    </div>
+<div id="main-box">
+    <div class="container">
+    <div class="row">
+        <div class="col-1">
+             <img src="images/banner.png" alt="">
+        </div>
+       <div class="col-2">
+         
+           <h1>ENTER THE NUMBER FOR GUESS</h1>
+           <input type="text" id="guess" placeholder="enter no b/w 0-20" />
+           <br>
+           <button id="check">&#127920; Check !</button>
+
+           <p id="start">&#8987; Start guessing</p>
+           <p id="score">&#127894; Score : <span id="scoresection">10</span></p>
+           <h4 id="again">&#128260; Agains</h4>
+       </div>
+    </div>
+</div>
+</div>
+            <div class="copyright"> 
+            <p>Copyright &#169; 2022 Tushar Gupta.</p>
+        </div>
+    <script>
+         const luckyno=Math.floor(Math.random()*20);
+         let score=10; 
+         const userinput = document.getElementById('guess');
+        const checkbutton = document.getElementById('check');
+        const start = document.getElementById('start');
+        checkbutton.addEventListener('click',fun);
+
+        const change = document.getElementById("main-box"); 
+
+        // console.log(userinput.getAttribute('placeholder'));
+
+        const again = document.getElementById("again");
+         again.addEventListener('click',fun1);
+
+         function fun1(){
+            location.reload();
+         }
+        const main = document.getElementById('header');
+        
+        const scorecard = document.querySelector('#scoresection');
+
+        console.log(change);
+       
+       
+         
+
+        function fun(){
+           if(score>0){
+            const guess = Number(userinput.value);
+            if(guess>=20 || guess<0 ){
+                     start.textContent="Guess The No. b/w 0-20";
+                     score=score-1;
+                     main.style.background='#333';
+
+                    //  document.write(typeof(guess));
+            }
+            else if(typeof(guess)!="number"){
+                  start.textContent="Enter the valid input";
+            }
+            else{
+                if(guess==luckyno){
+                    start.innerHTML="Wow You guessed right! &#127919; , You are lucky person";
+                    change.style.background='#367E18';
+                    main.style.background="#367E18";
+                }
+                else if(guess>luckyno){
+                    start.innerHTML="Your Guess is High &#128200; Enter Again";
+                      main.style.background='#fd5e53';
+                      score=score-1;
+                }
+                else{
+                    start.innerHTML="Your Guess is Low &#128201 Enter Again";
+                     main.style.background='#fd5e53';
+                     score=score-1;
+                }
+            }
+             userinput.value='';
+            scorecard.textContent=score;
+        }
+        else {
+            start.innerHTML=" You Loss The Game &#128533; Click Again for Play Again";
+
+        }
+        
+         
+        };
+   
+    </script>
+</body>
+</html>
